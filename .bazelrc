@@ -1,5 +1,6 @@
-build --cxxopt='-std=c++17'
-build --copt='-Wall' --copt='-Wextra' --copt='-Wpedantic'
-
-
 common --enable_bzlmod
+build --cxxopt='-std=c++17'
+test --test_output=errors
+# Speed up local builds a bit
+build --repository_cache=~/.cache/bazel/_repo
+build --disk_cache=~/.cache/bazel/_disk

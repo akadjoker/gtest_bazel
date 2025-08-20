@@ -1,50 +1,32 @@
+# gtest_bazel
 
-# Projeto C++ com Bazel, Google Test e CI/CD
+Repositório de exemplo com **Bazel + GoogleTest** e **GitHub Actions**.
 
-![CI](https://github.com/akadjoker/gteste_bazel/actions/workflows/ci.yml/badge.svg)
+## Requisitos
+- Bazel 7.x (ou Bazelisk)
+- Compilador C++17
 
-Este projeto demonstra uma estrutura simples em C++ utilizando Bazel como sistema de build, Google Test para testes unitários, CLion como IDE e GitHub Actions para CI/CD.
-
-## 📁 Estrutura
-
-```
-gteste_bazel/
-├── WORKSPACE
-├── BUILD
-├── src/
-│   ├── funcoes.cpp
-│   └── funcoes.hpp
-├── tests/
-│   └── test_funcoes.cpp
-└── .github/
-    └── workflows/
-        └── ci.yml
-```
-
-## 🚀 Como compilar e testar
-
+## Como correr localmente
 ```bash
+bazel sync
 bazel build //...
 bazel test //...
 ```
 
-## 🧪 Testes
+## Estrutura
+```
+.
+├── MODULE.bazel
+├── .bazelrc
+├── src/
+│   ├── BUILD
+│   ├── funcoes.hpp
+│   └── funcoes.cpp
+├── tests/
+│   ├── BUILD
+│   └── funcoes_test.cpp
+└── .github/workflows/ci.yml
+```
 
-Os testes estão localizados na pasta `tests/` e utilizam o framework Google Test.
-
-## 🛠️ Abrir no CLion
-
-Certifica-te de que tens o plugin Bazel instalado no CLion.
-O ficheiro `.bazelproject` já está incluído para facilitar a importação.
-
-## 🔄 CI/CD
-
-O workflow de CI/CD está definido em `.github/workflows/ci.yml` e é executado automaticamente em cada push ou pull request para a branch `main`.
-
-## 📌 Badge de Status
-
-O badge no topo mostra o estado atual do build e dos testes.
-
----
-
-
+## CI
+O pipeline usa `bazel-contrib/setup-bazel` para instalar Bazel e com cache ativado.

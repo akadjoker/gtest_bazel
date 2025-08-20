@@ -13,10 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Bazel
-        uses: bazelbuild/setup-bazel@v6
+        uses: bazel-contrib/setup-bazel@0.15.0
         with:
-          # Choose your Bazel version; 7.x works well with bzlmod
-          bazel-version: 7.1.2
+          bazelisk-cache: true
+          disk-cache: ${{ github.workflow }}
+          repository-cache: true
+      - name: Sync deps
+        run: bazel sync
       - name: Build
         run: bazel build //...
       - name: Test
