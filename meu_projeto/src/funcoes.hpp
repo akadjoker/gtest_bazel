@@ -1,0 +1,2 @@
+#pragma once
+int soma(int a, int b);
