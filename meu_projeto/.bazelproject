@@ -1,6 +1,0 @@
-directories:
-  src
-  tests
-
-targets:
-  //...
