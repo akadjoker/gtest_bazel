@@ -1,26 +1,23 @@
-name: Bazel CI
+name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Setup Bazel
-      uses: jwlawson/actions-setup-bazel@v2
-      with:
-        bazel-version: 'latest'
-
-    - name: Build
-      run: bazel build //...
-
-    - name: Test
-      run: bazel test //...
-
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Bazel
+        uses: bazelbuild/setup-bazel@v6
+        with:
+          # Choose your Bazel version; 7.x works well with bzlmod
+          bazel-version: 7.1.2
+      - name: Build
+        run: bazel build //...
+      - name: Test
+        run: bazel test //...
