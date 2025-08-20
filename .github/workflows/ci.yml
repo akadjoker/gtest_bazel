@@ -18,8 +18,6 @@ jobs:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}
           repository-cache: true
-      - name: Sync deps
-        run: bazel sync
       - name: Build
         run: bazel build //...
       - name: Test
